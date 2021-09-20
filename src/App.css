@@ -1,11 +1,18 @@
 *{
   list-style: none;
+  text-align: center;
 }
 h1{
   display: flex;
   justify-content: center;
   padding: 20px 0;
   color: greenyellow;
+}
+h2{
+  display: flex;
+  justify-content: center;
+  color: rgb(56, 28, 23);
+
 }
 input {
   size: 1rem;

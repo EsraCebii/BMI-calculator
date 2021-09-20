@@ -1,15 +1,31 @@
 import { useState} from 'react';
 import styled from 'styled-components';
-import {Link} from "react-router-dom";
+
 
 function Home() {
     const [height, setHeight]= useState("");
     const [weight, setWeight]= useState("");
     const [bmiResult, setBmiResult]= useState(null);
-
+    const [status, setStatus]= useState("");
+    
+    
     const calculateBMI= () => {
-        let bmi = Number(weight / (height / 100) ** 2).toFixed(2);
+        const bmi = Number(weight / (height / 100) ** 2).toFixed(2);
+        
         setBmiResult(bmi);
+
+        let bmiStatus= getStatus(bmi)
+        setStatus(bmiStatus)
+
+        setHeight("");
+        setWeight("");
+    }
+
+    const getStatus = (bmi)=> {
+        if(bmi < 18.5) return "Underweight";
+        else if(bmi >= 18.5 && bmi <24.9) return "Normal";
+        else if(bmi >= 25 && bmi <29.9) return "Overweight";
+        else return "Obese"
     }
 
 
@@ -39,12 +55,16 @@ function Home() {
                 value={weight}
                 onChange={(e)=> setWeight(e.target.value)} />
             </div>
-            <Link  to={`/result`}>
+            
             <TomatoButton
             onClick={calculateBMI}
             >Compute BMI</TomatoButton>
-            <div> Your DMI: {bmiResult}</div>
-            </Link>
+            {bmiResult && 
+                <div>
+                <h2>You are currently: {status} </h2> 
+                <h2>Your BMI is: {bmiResult}</h2>
+                </div>
+            }
         </div>
 
     )
