@@ -1,19 +1,18 @@
 import { useState} from 'react';
 import styled from 'styled-components';
+import {Link} from "react-router-dom";
 
 function Home() {
-    const [height, setHeight]= useState(null);
-    const [weight, setWeight]= useState(null);
+    const [height, setHeight]= useState("");
+    const [weight, setWeight]= useState("");
+    const [bmiResult, setBmiResult]= useState(null);
 
-    const Input = styled.input.attrs(props => ({
-        type: "number",
-        size: props.size || "1em",
-    }))`
-        border: 2px solid tomato;
-        color: tomato;
-        margin: ${props => props.size};
-        padding: ${props => props.size};
-      `;
+    const calculateBMI= () => {
+        let bmi = Number(weight / (height / 100) ** 2).toFixed(2);
+        setBmiResult(bmi);
+    }
+
+
       const Button = styled.button`
       color: palevioletred;
       font-size: 1em;
@@ -23,24 +22,29 @@ function Home() {
       border-radius: 3px;
     `;
     const TomatoButton = styled(Button)`
-  color: tomato;
-  border-color: tomato;
-`;
+    color: tomato;
+    border-color: tomato;
+    `;
 
     return (
         <div>
             <div>
-                Your Height : <Input placeholder="enter your height" size="2em" 
+                <span>Your Height :</span> <input placeholder="cm" size="2em" 
                 value={height}
                 onChange={(e)=> setHeight(e.target.value)}
                 />
             </div>
             <div>
-                Your Weight: <Input placeholder="enter your weight" size="2em"
+                <span>Your Weight:</span> <input placeholder="kg" size="2em"
                 value={weight}
                 onChange={(e)=> setWeight(e.target.value)} />
             </div>
-            <TomatoButton>Compute BMI</TomatoButton>
+            <Link  to={`/result`}>
+            <TomatoButton
+            onClick={calculateBMI}
+            >Compute BMI</TomatoButton>
+            <div> Your DMI: {bmiResult}</div>
+            </Link>
         </div>
 
     )

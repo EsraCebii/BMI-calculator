@@ -7,3 +7,16 @@ h1{
   padding: 20px 0;
   color: greenyellow;
 }
+input {
+  size: 1rem;
+  border: 2px solid tomato;
+  padding: 10px;
+  margin: 10px;
+}
+input:hover {
+  border: 2px solid black;
+}
+span {
+  font-weight: 500;
+
+}

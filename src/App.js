@@ -1,4 +1,5 @@
-import Home from "./components/Home"
+import Home from "./components/Home";
+import Result from "./components/Result";
 import './App.css';
 import {
   BrowserRouter as Router,
@@ -15,17 +16,12 @@ function App() {
           <li>
             <Link to="/"><h1>Body Mass Index </h1></Link>
           </li>
-          {/* <li>
-            <Link to="/quotes"><h1 style={{ color: "yellow" }}>Quotes</h1></Link>
-          </li>
-  */}
         </ul>
       </nav>
       <div>
         <Switch>
           <Route exact path="/" component={Home} />
- 
-
+          <Route path="/result" component={Result} />
         </Switch>
       </div>
     </Router>
